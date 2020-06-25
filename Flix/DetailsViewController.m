@@ -43,6 +43,8 @@
     [self.synopsisLabel sizeToFit];
 }
 
+
+
 /*
 #pragma mark - Navigation
 
