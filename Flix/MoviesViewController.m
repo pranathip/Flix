@@ -47,22 +47,17 @@
      NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", [error localizedDescription]);
-                //Error message
+                
+                //CONNECTIVITY ERROR MESSAGE
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The internet connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
                 
                 // create a cancel action
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 // handle cancel response here. Doing nothing will dismiss the view.
+                    [self fetchMovies];
                 }];
                 // add the cancel action to the alertController
                 [alert addAction:cancelAction];
-
-                // create an OK action
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                // handle response here.
-                }];
-                // add the OK action to the alert controller
-                [alert addAction:okAction];
                 
                 [self presentViewController:alert animated:YES completion:^{
                     // optional code for what happens after the alert controller has finished presenting
