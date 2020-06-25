@@ -7,8 +7,10 @@
 //
 
 #import "MoviesGridViewController.h"
+#import "MovieCollectionCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface MoviesGridViewController ()
+@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -20,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    
+    [self fetchMovies];
 }
 
 - (void) fetchMovies {
@@ -37,16 +43,15 @@
                 // TODO: Get the array of movies
                 // TODO: Store the movies in a property to use elsewhere
                 // TODO: Reload your table view data
+                NSLog(@"%@", dataDictionary);
                 self.movies = dataDictionary[@"results"];
-
+                [self.collectionView reloadData];
+            }
         }];
      [task resume];
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
-}
 
 
 /*
@@ -58,5 +63,22 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath { 
+    MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
+    NSDictionary *movie = self.movies[indexPath.item];
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = movie[@"poster_path"];
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+    cell.posterView.image = nil;
+    [cell.posterView setImageWithURL:posterURL];
+    return cell;
+}
+ 
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section { 
+    return self.movies.count;
+}
 
 @end
