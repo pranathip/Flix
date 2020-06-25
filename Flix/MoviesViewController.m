@@ -25,11 +25,20 @@
 
 @implementation MoviesViewController
 
+//ADDED SO THAT SELECTED ROW UNSELECTS AFTER RETURNING TO VIEW
+-(void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+    if (indexPath) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:animated];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
     
     //SEARCH BAR
     self.searchBar.delegate = self;
