@@ -33,6 +33,7 @@ The following **additional** features are implemented:
 - [x] "Popular Movies" tab displays movies that are most popular.
 - [x] Popular movies are given a "banner" that shows the average watcher rating.
 - [x] On movie description, release date is shown.
+- [x] Trailer can be played on "details" page by tapping the play button on the large poster.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
