@@ -10,6 +10,7 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *filteredData;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *searchButton;
 
 @end
 
@@ -38,10 +40,12 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     //SEARCH BAR
     self.searchBar.delegate = self;
+    self.searchBar.alpha = 0;
     
     //NSLog(@"activityIndicator Start");
     [self.activityIndicator startAnimating];
@@ -140,8 +144,9 @@
      }];
     //cell.posterView.image = nil;
     //[cell.posterView setImageWithURL:posterURL];
-    
-    
+    cell.backgroundColor = UIColor.systemGray6Color;
+    cell.posterView.layer.cornerRadius = 6;
+    cell.whiteRectView.layer.cornerRadius = 6;
     return cell;
 }
 
@@ -178,6 +183,36 @@
     DetailsViewController *detailsViewController = [segue destinationViewController];
     detailsViewController.movie = movie;
 }
+- (IBAction)onSearchTap:(id)sender {
+    NSLog(@"Tapped");
+    // create the search bar programatically since you won't be
+    // able to drag one onto the navigation bar
+    //self.searchBar = [[UISearchBar alloc] init];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.searchBar sizeToFit];
+        self.navigationItem.titleView = self.searchBar;
+        self.searchBar.alpha = 1;
+        self.searchBar.showsCancelButton = YES;
+        [self.searchButton setEnabled:NO];
+        [self.searchButton setTintColor: [UIColor clearColor]];
+    }];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.searchBar.showsCancelButton = NO;
+        [self.searchBar resignFirstResponder];
+        self.searchBar.alpha = 0;
+        [self.searchButton setEnabled:YES];
+        [self.searchButton setTintColor: [UIColor darkGrayColor]];
+    }];
+}
+
+/*- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+    [self.searchButton setEnabled:NO];
+    [self.searchButton setTintColor: [UIColor clearColor]];
+}*/
 
 
 @end
