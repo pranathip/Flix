@@ -47,6 +47,7 @@
     self.searchBar.delegate = self;
     self.searchBar.alpha = 0;
     
+    
     //NSLog(@"activityIndicator Start");
     [self.activityIndicator startAnimating];
     [self fetchMovies];
@@ -108,6 +109,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     NSDictionary *movie = self.filteredData[indexPath.row];
@@ -147,6 +149,29 @@
     cell.backgroundColor = UIColor.systemGray6Color;
     cell.posterView.layer.cornerRadius = 6;
     cell.whiteRectView.layer.cornerRadius = 6;
+    cell.star1.alpha = 1;
+    cell.star2.alpha = 0;
+    cell.star3.alpha = 0;
+    cell.star4.alpha = 0;
+    cell.star5.alpha = 0;
+    
+    //RATINGS
+    cell.starRating = [NSArray arrayWithObjects: cell.star1, cell.star2, cell.star3, cell.star4, cell.star5, nil];
+    NSNumber *rating = movie[@"vote_average"];
+    rating = @([rating doubleValue] / 2);
+    //NSLog(@"rating: %@", rating);
+    NSNumber *i = @0.0;
+    //NSLog(@"i: %@", i);
+    while ([i doubleValue] < [rating doubleValue]) {
+        //NSLog(@"starred");
+        UIImageView *currStar = [cell.starRating objectAtIndex:[i intValue]];
+        currStar.alpha = 1;
+        i = @([i doubleValue] + 1);
+    }
+    //half stars
+    /*if ([rating doubleValue] - [i doubleValue] > 0.5) {
+        
+    }*/
     return cell;
 }
 
