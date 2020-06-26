@@ -29,11 +29,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Star rating displayed on home page.
+- [x] Star rating displayed for each movie on "now playing" page.
 - [x] "Popular Movies" tab displays movies that are most popular.
 - [x] Popular movies are given a "banner" that shows the average watcher rating.
 - [x] On movie description, release date is shown.
 - [x] Trailer can be played on "details" page by tapping the play button on the large poster.
+- [x] Changed App Icon to custom logo design.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -53,8 +54,6 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 This app posed a few challenges for me during development - I had a bit of trouble implementing and debugging the search bar featuer at first due to some updates that had to be made with the filtered data and reloading the movies displayed in the tableView. After some help and some tinkering though, I was able to get it to have smooth animated transitions and nice integration with the UI. Additionally, the features that I added myself were a bit challenging to implement at first since there was no CodePath documentation about them specifically, but they turned out looking pretty cool!
 
 ## Credits
-
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 

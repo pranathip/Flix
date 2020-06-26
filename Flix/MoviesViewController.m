@@ -230,6 +230,8 @@
         self.searchBar.alpha = 0;
         [self.searchButton setEnabled:YES];
         [self.searchButton setTintColor: [UIColor darkGrayColor]];
+        self.filteredData = self.movies;
+        [self.tableView reloadData];
     }];
 }
 
