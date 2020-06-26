@@ -24,17 +24,20 @@ The following **optional** features are implemented:
 - [x] User can view the large movie poster by tapping on a cell.
 - [x] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
 - [x] Customize the selection effect of the cell.
-- [ ] Customize the navigation bar.
-- [ ] Customize the UI.
+- [x] Customize the navigation bar.
+- [x] Customize the UI.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Star rating displayed on home page.
+- [x] "Popular Movies" tab displays movies that are most popular.
+- [x] Popular movies are given a "banner" that shows the average watcher rating.
+- [x] On movie description, release date is shown.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I thought it would be cool to add a "custom filters" feature where the user can filter movies by genre, rating, runtime, etc. Not sure how I would go about doing this, but could be something cool to explore!
+2. The way that I implemented star ratings was brute force in nature, and didn't allow for half-stars to be shown. I'd like to discuss a better method of implementing this feature.
 
 ## Video Walkthrough
 
@@ -46,7 +49,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+This app posed a few challenges for me during development - I had a bit of trouble implementing and debugging the search bar featuer at first due to some updates that had to be made with the filtered data and reloading the movies displayed in the tableView. After some help and some tinkering though, I was able to get it to have smooth animated transitions and nice integration with the UI. Additionally, the features that I added myself were a bit challenging to implement at first since there was no CodePath documentation about them specifically, but they turned out looking pretty cool!
 
 ## Credits
 
